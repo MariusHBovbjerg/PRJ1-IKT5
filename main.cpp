@@ -1,12 +1,11 @@
 /*
- * PRJ1-IKT5.cpp
+ * PRJ1-IKT5
  *
- * Created: 08/11/2019 11.10.41
- * Author : Marius
+ * Created: 08/11/2019 11.18.27
+ * Author : Marius Hambro Bovbjerg
  */ 
 
-#include <avr/io.h>
-
+#include "includes.h"
 
 int main(void)
 {
@@ -15,4 +14,3 @@ int main(void)
     {
     }
 }
-

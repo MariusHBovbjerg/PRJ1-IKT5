@@ -143,7 +143,40 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BLightDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="BLightDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Counter.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Counter.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="FLightDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="FLightDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="includes.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MotorDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MotorDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SoundDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SoundDriver.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
