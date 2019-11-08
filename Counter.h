@@ -6,3 +6,6 @@
  */ 
 
 #pragma once
+
+void initCounter();
+

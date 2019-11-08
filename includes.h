@@ -7,21 +7,12 @@
 
 #pragma once
 
-// namespaces
-
-using namespace std;
-
 // public libraries
-#include <iostream>
+#define F_CPU 16000000
 #include <stdio.h>
-#include <cmath>
-#include <ctime>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include <conio.h>
-#include <string>
-#include <windows.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>

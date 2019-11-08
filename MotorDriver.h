@@ -7,4 +7,10 @@
 
 #pragma once
 
-void setSpeed(int);
+void initMotor(); // Function for init PWM timer for motor.
+
+void forward(); // Function for driving forward.
+
+void reverse(); // Function for driving in reverse.
+
+void setSpeed(int); // Function to set the speed of the car.
