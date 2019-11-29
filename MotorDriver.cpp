@@ -5,7 +5,9 @@
  * Author : Marius Hambro Bovbjerg
  */ 
 
-#include "includes.h"
+#include "MotorDriver.h"
+#include <stdio.h>
+#include <avr/io.h>
 
 void initMotor(){
 	TCCR1A = 0b00100010; // Set compare mode for OC1A

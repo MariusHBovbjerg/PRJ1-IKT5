@@ -5,7 +5,8 @@
  * Author : Marius Hambro Bovbjerg
  */ 
 
-#include "includes.h"
+#include "Counter.h"
+
 
 void initCounter(){
 	EIMSK = 0b00001100; // INT 2 og INT 3 - BEN 45 og 46 respectively.
