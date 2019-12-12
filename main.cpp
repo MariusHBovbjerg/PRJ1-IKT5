@@ -55,7 +55,28 @@ int main(void)
 	initMotor();
 	InitUART(9600,8,false);
 	while(1){
-	
+		
+		setSpeed(50);
+		
+		forward(MotorMode);
+		
+		setSpeed(70);
+		setSpeed(80);
+		setSpeed(90);
+		setSpeed(100);
+		
+		reverse(MotorMode);
+		
+		stopMotor(MotorMode);
+		
+		reverse(MotorMode);
+		
+		setSpeed(100);
+		setSpeed(90);
+		setSpeed(80);
+		setSpeed(70);
+		
+		stopMotor(MotorMode);
 	}
 	
 }
