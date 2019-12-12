@@ -14,15 +14,21 @@ void initMotor(){
 	TCCR1B = 0b00011101; // Set Mode 14, FAST PWM TOP = ICR1 & 1024 prescaler
 	ICR1 = 156; // TOP value
 	OCR1A = 0; // Compare value, 0 = 0% duty cycle, 156 = 100% duty cycle
+	DDRA = 0xFF; // Make pin a ports outputs, so we can trigger the H-Bridge.
 }
 
-void forward(){
-	
+void forwardMotor(char setting){
+	setting = 1;
 }
 
-void reverse(){
-	
+void reverseMotor(char setting){
+	setting = 2;
 }
+
+void stopMotor(char setting){
+	setting = 0;
+}
+
 
 void setSpeed(char speed) {
 	

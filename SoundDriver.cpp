@@ -5,7 +5,10 @@
  * Author : Marius Hambro Bovbjerg
  */ 
 
+#define F_CPU 16000000
 #include "SoundDriver.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 

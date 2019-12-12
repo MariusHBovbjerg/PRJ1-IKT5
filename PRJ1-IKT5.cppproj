@@ -173,27 +173,6 @@
     <Compile Include="FLightDriver.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="i2c.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="i2c.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="includes.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="led.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="led.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="lm75.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="lm75.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>

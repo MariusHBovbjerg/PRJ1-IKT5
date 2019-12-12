@@ -8,12 +8,6 @@ Counter.cpp
 
 FLightDriver.cpp
 
-i2c.cpp
-
-led.cpp
-
-lm75.cpp
-
 main.cpp
 
 MotorDriver.cpp
