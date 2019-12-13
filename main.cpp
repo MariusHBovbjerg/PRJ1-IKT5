@@ -22,15 +22,15 @@
 volatile unsigned char counter = 0;
 
 volatile unsigned char MotorMode = 0;
-ISR(INT2_vect){ //On rising edge, count + 1
+
+ISR(INT4_vect){ //On rising edge, count + 1
 	counter++;
+	SendInteger(counter);
 }
 
-ISR(INT3_vect){ //On rising edge, count + 1
-	counter++;
-}
 
 ISR(TIMER1_COMPA_vect){
+	                                                                                                                                                                        
 	switch(MotorMode){
 		case 0:
 			PORTA = 0b00000000;
@@ -54,29 +54,61 @@ int main(void)
 	initCounter();
 	initMotor();
 	InitUART(9600,8,false);
-	while(1){
+	//while(1){
 		
 		setSpeed(50);
 		
-		forward(MotorMode);
+		_delay_ms(10);
+		
+		forwardMotor(MotorMode);
+		
+		_delay_ms(250);
 		
 		setSpeed(70);
+		
+		_delay_ms(250);
+		
 		setSpeed(80);
+		
+		_delay_ms(250);
+		
 		setSpeed(90);
+		
+		_delay_ms(250);
+		
 		setSpeed(100);
 		
-		reverse(MotorMode);
+		_delay_ms(250);
+		
+		reverseMotor(MotorMode);
+		
+		_delay_ms(250);
 		
 		stopMotor(MotorMode);
 		
-		reverse(MotorMode);
+		_delay_ms(250);
+		
+		reverseMotor(MotorMode);
+		
+		_delay_ms(250);
 		
 		setSpeed(100);
+		
+		_delay_ms(250);
+		
 		setSpeed(90);
+		
+		_delay_ms(250);
+		
 		setSpeed(80);
+		
+		_delay_ms(250);
+		
 		setSpeed(70);
 		
+		_delay_ms(250);
+		
 		stopMotor(MotorMode);
-	}
+	//}
 	
 }

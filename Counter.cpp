@@ -10,6 +10,6 @@
 
 
 void initCounter(){
-	EIMSK = 0b00001100; // INT 2 og INT 3 - BEN 45 og 46 respectively.
-	EICRA = 0b11110000; // INT 2 og INT 3 both rising edge.
+	EIMSK = 0b00010000; // INT 4 active - BEN 2.
+	EICRB = 0b00000011; // INT 4 rising edge.
 }
