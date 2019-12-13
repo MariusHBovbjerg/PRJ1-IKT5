@@ -35,16 +35,18 @@ ISR(TIMER1_COMPA_vect){
 	                                                                                                                                                                        
 	switch(MotorMode){
 		case 0:
-			PORTA = 0b00000000;
+			PORTA &= 0b11111100;
 		break;
 		case 1:
-			PORTA = 0b00000001;
+			PORTA |= 0b00000001;
+			PORTA &= 0b11111101;
 		break;
 		case 2:
-			PORTA = 0b00000010;
+			PORTA |= 0b00000010;
+			PORTA &= 0b11111110;
 		break;
 		default:
-			PORTA = 0b00000000;
+			PORTA &= 0b11111100;
 		break;
 			
 	}
@@ -53,6 +55,7 @@ ISR(TIMER1_COMPA_vect){
 int main(void)
 {
 	sei();
+	PORTA = 0b00000000;
 	initCounter();
 	initMotor();
 	InitUART(9600,8,false);
@@ -64,6 +67,7 @@ int main(void)
 				case 1:
 					newCount = false;
 					SendInteger(1);
+					PORTA |= 0b00000100;
 					SendChar('\n');
 					break;
 				case 2:
@@ -110,6 +114,7 @@ int main(void)
 				case 10:
 					newCount = false;
 					SendInteger(10);
+					PORTA &= 0b11111011;
 					SendChar('\n');
 					break;
 				default:
