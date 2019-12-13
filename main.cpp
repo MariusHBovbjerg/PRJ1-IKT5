@@ -19,13 +19,15 @@
 #include "SoundDriver.h"
 #include "BLightDriver.h"
 
-volatile unsigned char counter = 0;
+unsigned char counter = 0;
+
+bool newCount = true;
 
 volatile unsigned char MotorMode = 0;
 
 ISR(INT4_vect){ //On rising edge, count + 1
+	newCount = true;
 	counter++;
-	SendInteger(counter);
 }
 
 
@@ -54,61 +56,71 @@ int main(void)
 	initCounter();
 	initMotor();
 	InitUART(9600,8,false);
-	//while(1){
+	counter = 0;
+	while(1){
 		
-		setSpeed(50);
-		
-		_delay_ms(10);
-		
-		forwardMotor(MotorMode);
-		
-		_delay_ms(250);
-		
-		setSpeed(70);
-		
-		_delay_ms(250);
-		
-		setSpeed(80);
-		
-		_delay_ms(250);
-		
-		setSpeed(90);
-		
-		_delay_ms(250);
-		
-		setSpeed(100);
-		
-		_delay_ms(250);
-		
-		reverseMotor(MotorMode);
-		
-		_delay_ms(250);
-		
-		stopMotor(MotorMode);
-		
-		_delay_ms(250);
-		
-		reverseMotor(MotorMode);
-		
-		_delay_ms(250);
-		
-		setSpeed(100);
-		
-		_delay_ms(250);
-		
-		setSpeed(90);
-		
-		_delay_ms(250);
-		
-		setSpeed(80);
-		
-		_delay_ms(250);
-		
-		setSpeed(70);
-		
-		_delay_ms(250);
-		
-		stopMotor(MotorMode);
-	//}
+		if(newCount){
+			switch(counter){
+				case 1:
+					newCount = false;
+					SendInteger(1);
+					SendChar('\n');
+					break;
+				case 2:
+					newCount = false;
+					SendInteger(2);
+					SendChar('\n');
+					break;
+					
+				case 3:
+					newCount = false;
+					SendInteger(3);
+					SendChar('\n');
+					break;
+				case 4:
+					newCount = false;
+					SendInteger(4);
+					SendChar('\n');
+					break;
+				case 5:
+					newCount = false;
+					SendInteger(5);
+					SendChar('\n');
+					break;
+				case 6:
+					newCount = false;
+					SendInteger(6);
+					SendChar('\n');
+					break;
+				case 7:
+					newCount = false;
+					SendInteger(7);
+					SendChar('\n');
+					break;
+				case 8:
+					newCount = false;
+					SendInteger(8);
+					SendChar('\n');
+					break;
+				case 9:
+					newCount = false;
+					SendInteger(9);
+					SendChar('\n');
+					break;
+				case 10:
+					newCount = false;
+					SendInteger(10);
+					SendChar('\n');
+					break;
+				default:
+				
+					newCount = false;
+					SendString("Out of bounds\n");
+					break;
+				
+			}
+		}
+		_delay_ms(100);
+	}
 	
 }

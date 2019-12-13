@@ -10,7 +10,7 @@
 #include <avr/io.h>
 
 void initMotor(){
-	TCCR1A = 0b11000010; // Set compare mode for OC1A
+	TCCR1A = 0b11000010; // Set compare mode for OCR1A
 	TCCR1B = 0b00011101; // Set Mode 14, FAST PWM TOP = ICR1 & 1024 prescaler
 	TIMSK1 = 0b00000010;
 	ICR1 = 156; // TOP value
@@ -30,13 +30,15 @@ void stopMotor(int setting){
 	setting = 0;
 }
 
-
 void setSpeed(int speed) {
 	
-	int dutyCycle;
+	int dutyCycle = 0;
 	
 	if (speed > 100) {
 		int dutyCycle = 100;
+	}
+	else if (speed <= 0) {
+		int dutyCycle = 0;
 	}
 	else {
 		int dutyCycle = speed;
