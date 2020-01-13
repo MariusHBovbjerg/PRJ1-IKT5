@@ -6,4 +6,6 @@
  */ 
 
 #pragma once
-
+void BlightInit(void);
+void BlightToggle(void);
+void blightStrength(int);

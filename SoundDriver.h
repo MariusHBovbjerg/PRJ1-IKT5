@@ -13,3 +13,7 @@ char ReadChar();
 void SendChar(char);
 void SendString(char*);
 void SendInteger(int);
+void playNext(void);
+void volumeUp(void);
+void volumeDown(void);
+void stopSound(void);

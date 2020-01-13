@@ -28,35 +28,35 @@ UART 0 initialization:
 void InitUART(unsigned long BAUD, unsigned char DataBit, bool Rx_Int)
 {
    if(Rx_Int){
-	  UCSR0B = 0b10011000; 
+	  UCSR1B = 0b10011000; 
 	  sei();
    }else{
-	   UCSR0B = 0b00011000;
+	   UCSR1B = 0b00011000;
    }
    if((BAUD >= 300) && (BAUD <= 115200) && (DataBit >= 5) && (DataBit <= 8)){
 	   switch(DataBit){
 		   case 5:
-			   UCSR0C = 0b00000000;
+			   UCSR1C = 0b00000000;
 			   break;
 		   
 		   case 6:
-			   UCSR0C = 0b00000010;
+			   UCSR1C = 0b00000010;
 			   break;
 		   
 		   case 7:
-			   UCSR0C = 0b00000100;
+			   UCSR1C = 0b00000100;
 			   break;
 		   
 		   case 8:
-			   UCSR0C = 0b00000110;
+			   UCSR1C = 0b00000110;
 			   break;
 		   
 		   default:
-			   UCSR0C = 0b00000110;
+			   UCSR1C = 0b00000110;
 			   break;
 	   }
 	}
-	UBRR0L = ((F_CPU/(16*BAUD))-1);
+	UBRR1L = ((F_CPU/(16*BAUD))-1);
 }
 
 /*************************************************************************
@@ -65,7 +65,7 @@ void InitUART(unsigned long BAUD, unsigned char DataBit, bool Rx_Int)
 *************************************************************************/
 bool CharReady()
 {
-   return (UCSR0A & (1<<TXC0)) ? true : false;
+   return (UCSR1A & (1<<TXC1)) ? true : false;
 }
 
 /*************************************************************************
@@ -74,10 +74,10 @@ Then this character is returned.
 *************************************************************************/
 char ReadChar()
 {
-   while(!(UCSR0A & (1<<RXC0))){
+   while(!(UCSR1A & (1<<RXC1))){
 	   
    }
-   return UDR0;
+   return UDR1;
 }
 
 /*************************************************************************
@@ -88,10 +88,10 @@ Parameter :
 *************************************************************************/
 void SendChar(char Tegn)
 {
-   while(!(UCSR0A & (1<<UDRE0))){
+   while(!(UCSR1A & (1<<UDRE1))){
 	   
    }
-   UDR0 = Tegn;
+   UDR1 = Tegn;
 }
 
 /*************************************************************************
@@ -123,3 +123,60 @@ void SendInteger(int Tal)
 
 
 /************************************************************************/
+
+void playNext()
+{
+
+	SendChar(0x7E);
+	SendChar(0x01);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0xFF);
+	SendChar(0xFF);
+	SendChar(0xEF);
+
+};
+
+void volumeUp()
+{
+
+	SendChar(0x7E);
+	SendChar(0x04);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0xFF);
+	SendChar(0xFC);
+	SendChar(0xEF);
+
+};
+
+
+void volumeDown()
+{
+
+	SendChar(0x7E);
+	SendChar(0x05);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0xFF);
+	SendChar(0xFB);
+	SendChar(0xEF);
+
+};
+
+void stopSound()
+{
+
+	SendChar(0x7E);
+	SendChar(0x16);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0xFF);
+	SendChar(0xEA);
+	SendChar(0xEF);
+
+};

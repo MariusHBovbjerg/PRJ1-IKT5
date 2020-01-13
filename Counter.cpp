@@ -9,7 +9,8 @@
 #include <avr/interrupt.h>
 
 
-void initCounter(){
+void initCounter(int var){
 	EIMSK = 0b00010000; // INT 4 active - BEN 2.
 	EICRB = 0b00000011; // INT 4 rising edge.
+	var = 0;
 }

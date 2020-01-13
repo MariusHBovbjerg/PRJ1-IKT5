@@ -10,16 +10,15 @@
 #include <avr/io.h>
 
 void initMotor(){
-	TCCR1A = 0b11000010; // Set compare mode for OCR1A
-	TCCR1B = 0b00011101; // Set Mode 14, FAST PWM TOP = ICR1 & 1024 prescaler
+	TCCR1A = (1<<COM3A1)|(1<<COM3A0)|(0<<WGM31)|(1<<WGM30); // Set compare mode for OCR1A
+	TCCR1B = (0<<WGM33)|(0<<WGM32)|(1<<CS32)|(0<<CS31)|(0<<CS30); // Set Mode 1, PWM Phase correct 8-bit & 256 prescaler
 	TIMSK1 = 0b00000010;
-	ICR1 = 156; // TOP value
-	OCR1A = 0; // Compare value, 0 = 0% duty cycle, 156 = 100% duty cycle
+	OCR1A = 0;
 	DDRA = 0xFF; // Make pin a ports outputs, so we can trigger the H-Bridge.
 }
 
 void forwardMotor(int setting){
-	setting = 1;
+	 setting = 1;
 }
 
 void reverseMotor(int setting){
@@ -34,15 +33,15 @@ void setSpeed(int speed) {
 	
 	int dutyCycle = 0;
 	
-	if (speed > 100) {
-		int dutyCycle = 100;
+	if (speed > 254) {
+		dutyCycle = 254;
 	}
 	else if (speed <= 0) {
-		int dutyCycle = 0;
+		dutyCycle = 1;
 	}
 	else {
-		int dutyCycle = speed;
+		dutyCycle = speed;
 	}
 
-	OCR1A = (float)(dutyCycle * 1.56);
+	OCR1A = dutyCycle;
 }

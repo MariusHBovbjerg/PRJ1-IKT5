@@ -7,5 +7,5 @@
 
 #pragma once
 
-void initCounter();
+void initCounter(int);
 

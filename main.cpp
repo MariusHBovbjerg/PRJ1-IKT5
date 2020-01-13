@@ -10,20 +10,17 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
 #include "MotorDriver.h"
 #include "FLightDriver.h"
 #include "Counter.h"
 #include "SoundDriver.h"
 #include "BLightDriver.h"
 
-unsigned char counter = 0;
-
+int counter = 0;
+bool finalSound = true;
 bool newCount = true;
 
-volatile unsigned char MotorMode = 0;
+unsigned int MotorMode = 0;
 
 ISR(INT4_vect){ //On rising edge, count + 1
 	newCount = true;
@@ -32,100 +29,168 @@ ISR(INT4_vect){ //On rising edge, count + 1
 
 
 ISR(TIMER1_COMPA_vect){
-	                                                                                                                                                                        
+	                     
+	       
+	
+	                                                                                                                                            
 	switch(MotorMode){
 		case 0:
-			PORTA &= 0b11111100;
+			PORTA = 0b00000000;
 		break;
 		case 1:
-			PORTA |= 0b00000001;
-			PORTA &= 0b11111101;
+			if(PINA == 0b00000001){
+				PORTA = 0b00000000;
+			}else{
+				PORTA = 0b00000001;
+			}
 		break;
 		case 2:
-			PORTA |= 0b00000010;
-			PORTA &= 0b11111110;
+			if(PINA == 0b00000010){
+				PORTA = 0b00000000;
+				}else{
+				PORTA = 0b00000010;
+			}
 		break;
 		default:
-			PORTA &= 0b11111100;
+			PORTA = 0b00000000;
 		break;
 			
 	}
 }
 
+ISR(TIMER3_COMPA_vect){
+	
+	BlightToggle();
+}
+
 int main(void)
 {
 	sei();
-	PORTA = 0b00000000;
-	initCounter();
+	initCounter(counter);
 	initMotor();
-	InitUART(9600,8,false);
-	counter = 0;
+	InitUART(9600, 8, 0);
+	BlightInit();
+	blightStrength(1);
+	volumeUp();
+	volumeUp();
+	volumeUp();
+	volumeUp();
+	counter = -1;
+	MotorMode = 0;
+	PORTA = 0b00000000;
 	while(1){
 		
-		if(newCount){
-			switch(counter){
-				case 1:
-					newCount = false;
-					SendInteger(1);
-					PORTA |= 0b00000100;
-					SendChar('\n');
-					break;
-				case 2:
-					newCount = false;
-					SendInteger(2);
-					SendChar('\n');
-					break;
-					
-				case 3:
-					newCount = false;
-					SendInteger(3);
-					SendChar('\n');
-					break;
-				case 4:
-					newCount = false;
-					SendInteger(4);
-					SendChar('\n');
-					break;
-				case 5:
-					newCount = false;
-					SendInteger(5);
-					SendChar('\n');
-					break;
-				case 6:
-					newCount = false;
-					SendInteger(6);
-					SendChar('\n');
-					break;
-				case 7:
-					newCount = false;
-					SendInteger(7);
-					SendChar('\n');
-					break;
-				case 8:
-					newCount = false;
-					SendInteger(8);
-					SendChar('\n');
-					break;
-				case 9:
-					newCount = false;
-					SendInteger(9);
-					SendChar('\n');
-					break;
-				case 10:
-					newCount = false;
-					SendInteger(10);
-					PORTA &= 0b11111011;
-					SendChar('\n');
-					break;
-				default:
-				
-					newCount = false;
-					SendString("Out of bounds\n");
-					break;
-				
+		switch(counter){
+			case 0:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+				FlightOn();
 			}
+			blightStrength(50);
+			_delay_ms(100); //Delay for at spille intro 10 sek
+			MotorMode = 1;
+			setSpeed(50);
+			break;
+			case 1:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+			}
+			setSpeed(100);
+			break;
+			case 2:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+			}
+			setSpeed(150);
+			
+			break;
+			case 3:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+			}
+			setSpeed(204);
+			
+			break;
+			case 4:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+			}
+			
+			break;
+			case 5:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+			}
+			setSpeed(100);
+			MotorMode = 1;
+			blightStrength(254);
+			
+			break;
+			case 6:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+			}
+			setSpeed(150);
+			
+			break;
+			case 7:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+				blightStrength(254);
+			}
+			MotorMode = 2;
+			_delay_ms(300); // Ændre hvis lyset slukker før bilen stopper med at bremse.
+			blightStrength(50);
+			
+			break;
+			case 8:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+				blightStrength(254);
+			}
+			MotorMode = 1;
+			_delay_ms(300); // Ændre hvis lyset slukker før bilen stopper med at bremse.
+			blightStrength(50);
+			break;
+			case 9:
+			if(newCount){
+				newCount = false;
+				playNext(); //Mario Intro
+				blightStrength(254);
+			}
+			_delay_ms(100);
+			setSpeed(150);
+			_delay_ms(100);
+			setSpeed(100);
+			_delay_ms(100);
+			setSpeed(50);
+			_delay_ms(100);
+			setSpeed(1);
+			
+			MotorMode = 0;
+			FlightOff();
+			blightStrength(1);
+			if(finalSound){
+				finalSound = false;
+				playNext(); //Mario Intro
+			}
+			
+			break;
+			default:
+			MotorMode = 0;
+			setSpeed(0);
+			break;
 		}
-		_delay_ms(100);
+			
 	}
 	
 }
