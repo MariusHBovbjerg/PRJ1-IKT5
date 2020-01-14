@@ -29,10 +29,7 @@ ISR(INT4_vect){ //On rising edge, count + 1
 
 
 ISR(TIMER1_COMPA_vect){
-	                     
-	       
-	
-	                                                                                                                                            
+	                                                                                                                                          
 	switch(MotorMode){
 		case 0:
 			PORTA = 0b00000000;
@@ -147,7 +144,7 @@ int main(void)
 				blightStrength(254);
 			}
 			MotorMode = 2;
-			_delay_ms(300); // Ændre hvis lyset slukker før bilen stopper med at bremse.
+			_delay_ms(300); // Ã†ndre hvis lyset slukker fÃ¸r bilen stopper med at bremse.
 			blightStrength(50);
 			
 			break;
@@ -158,7 +155,7 @@ int main(void)
 				blightStrength(254);
 			}
 			MotorMode = 1;
-			_delay_ms(300); // Ændre hvis lyset slukker før bilen stopper med at bremse.
+			_delay_ms(300); // Ã†ndre hvis lyset slukker fÃ¸r bilen stopper med at bremse.
 			blightStrength(50);
 			break;
 			case 9:
