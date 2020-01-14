@@ -148,7 +148,7 @@ int main(void)
 				blightStrength(254);
 				MotorMode = 2;
 				setSpeed(150);
-				_delay_ms(300);
+				_delay_ms(500);
 			}
 			blightStrength(50);
 			
@@ -166,7 +166,7 @@ int main(void)
 				playNext(); //Mario Intro
 				blightStrength(254);				
 				MotorMode = 1;
-				_delay_ms(300)
+				_delay_ms(500);
 			}
 			blightStrength(50);
 			break;
@@ -200,7 +200,7 @@ int main(void)
 			setSpeed(50);
 			_delay_ms(200);
 			setSpeed(1);
-			
+			_delay_ms(500);
 			MotorMode = 0;
 			FlightOff();
 			blightStrength(1);
