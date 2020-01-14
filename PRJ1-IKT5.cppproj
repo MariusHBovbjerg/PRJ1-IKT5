@@ -174,10 +174,10 @@
     <Compile Include="BLightDriver.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Counter.cpp">
+    <Compile Include="Sensor.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Counter.h">
+    <Compile Include="Sensor.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="FLightDriver.cpp">

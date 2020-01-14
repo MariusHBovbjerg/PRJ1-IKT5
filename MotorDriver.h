@@ -9,10 +9,10 @@
 
 void initMotor(); // Function for init PWM timer for motor.
 
-void forwardMotor(int); // Function for driving forward.
+void forwardMotor(unsigned int); // Function for driving forward.
 
-void reverseMotor(int); // Function for driving in reverse.
+void reverseMotor(unsigned int); // Function for driving in reverse.
 
-void stopMotor(int); // Function for driving in reverse.
+void stopMotor(unsigned int); // Function for driving in reverse.
 
 void setSpeed(int); // Function to set the speed of the car.

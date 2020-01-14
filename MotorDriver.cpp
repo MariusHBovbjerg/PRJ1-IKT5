@@ -14,18 +14,18 @@ void initMotor(){
 	TCCR1B = (0<<WGM33)|(0<<WGM32)|(1<<CS32)|(0<<CS31)|(0<<CS30); // Set Mode 1, PWM Phase correct 8-bit & 256 prescaler
 	TIMSK1 = 0b00000010;
 	OCR1A = 0;
-	DDRA = 0xFF; // Make pin a ports outputs, so we can trigger the H-Bridge.
+	DDRA = 0xFF; // Make pin A ports outputs, so we can trigger the H-Bridge.
 }
 
-void forwardMotor(int setting){
+void forwardMotor(unsigned int setting){
 	 setting = 1;
 }
 
-void reverseMotor(int setting){
+void reverseMotor(unsigned int setting){
 	setting = 2;
 }
 
-void stopMotor(int setting){
+void stopMotor(unsigned int setting){
 	setting = 0;
 }
 
