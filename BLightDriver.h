@@ -7,5 +7,5 @@
 
 #pragma once
 void bLightInit(void);
-void blLghtToggle(void);
+void bLightToggle(void);
 void bLightStrength(int);
