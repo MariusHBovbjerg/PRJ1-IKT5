@@ -20,7 +20,7 @@ void BlightInit(void){
 
 void BlightToggle(void){
 	
-	PINC |= 0b00000101; // ben 35 og 37
+	PINC = ~PINC; // ben 35 og 37
 	
 }
 
