@@ -65,7 +65,7 @@ ISR(TIMER1_COMPA_vect){
 
 ISR(TIMER3_COMPA_vect){
 	
-	BlightToggle();
+	bLightToggle();
 }
 
 int main(void)
@@ -74,8 +74,8 @@ int main(void)
 	initCounter();
 	initMotor();
 	InitUART(9600, 8, 0);
-	BlightInit();
-	blightStrength(1);
+	bLightInit();
+	bLightStrength(1);
 	volumeUp();
 	volumeUp();
 	volumeUp();
@@ -90,9 +90,9 @@ int main(void)
 			if(newCount){
 				newCount = false;
 				playNext(); //Mario Intro
-				FlightOn();
+				fLightOn();
 				_delay_ms(2000); //Delay for at spille intro 10 sek
-				blightStrength(50);
+				bLightStrength(50);
 			}
 			MotorMode = 1;
 			setSpeed(150);
@@ -148,9 +148,9 @@ int main(void)
 				MotorMode = 2;
 				_delay_ms(10);
 				setSpeed(150);
-				blightStrength(254);
+				bLightStrength(254);
 				_delay_ms(500);
-				blightStrength(50);
+				bLightStrength(50);
 			}
 			
 			
@@ -167,12 +167,12 @@ int main(void)
 			if(newCount){
 				playNext(); //Mario coin
 				newCount = false;
-				blightStrength(254);		
+				bLightStrength(254);		
 				MotorMode = 1;
 				_delay_ms(10);
 				setSpeed(150);
 				_delay_ms(500);
-				blightStrength(50);
+				bLightStrength(50);
 		
 			}
 			
@@ -196,7 +196,7 @@ int main(void)
 			if(newCount){
 				playNext(); //Mario coin
 				newCount = false;
-				blightStrength(254);
+				bLightStrength(254);
 				_delay_ms(350);
 				setSpeed(100);
 				_delay_ms(350);
@@ -207,8 +207,8 @@ int main(void)
 			setSpeed(1);
 			MotorMode = 0;
 			_delay_ms(500);
-			FlightOff();
-			blightStrength(1);
+			fLightOff();
+			bLightStrength(1);
 			if(finalSound){
 				finalSound = false;
 				playNext(); //Mario end

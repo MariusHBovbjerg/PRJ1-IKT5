@@ -17,18 +17,6 @@ void initMotor(){
 	DDRA = 0xFF; // Make pin A ports outputs, so we can trigger the H-Bridge.
 }
 
-void forwardMotor(unsigned int setting){
-	 setting = 1;
-}
-
-void reverseMotor(unsigned int setting){
-	setting = 2;
-}
-
-void stopMotor(unsigned int setting){
-	setting = 0;
-}
-
 void setSpeed(int speed) {
 	
 	int dutyCycle = 0;

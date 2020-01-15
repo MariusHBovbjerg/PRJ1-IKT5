@@ -10,13 +10,13 @@
 #include <stdio.h>
 #include <avr/io.h>
 
-void FlightInit(void){
+void fLightInit(void){
 	DDRG = 0xFF; 
 }
 
-void FlightOn(void){
+void fLightOn(void){
 	PORTG = 0b00000101; //ben 39 og 41
 }
-void FlightOff(void){
+void fLightOff(void){
 	PORTG = 0b00000000;
 }

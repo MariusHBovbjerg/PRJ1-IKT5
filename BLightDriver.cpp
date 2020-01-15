@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <avr/io.h>
 
-void BlightInit(void){
+void bLightInit(void){
 	DDRC = 0xFF;
 	TCCR3A = (1<<COM3A1)|(1<<COM3A0)|(0<<WGM31)|(1<<WGM30); // Set compare mode for OCR1A
 	TCCR3B = (0<<WGM33)|(0<<WGM32)|(1<<CS32)|(0<<CS31)|(0<<CS30); // Set Mode 1, PWM Phase correct 8-bit & 256 prescaler
@@ -18,13 +18,13 @@ void BlightInit(void){
 	PINC = 0b00001010;
 }
 
-void BlightToggle(void){
+void bLightToggle(void){
 	
 	PINC = ~PINC; // ben 35 og 37
 	
 }
 
-void blightStrength(int Brightness){
+void bLightStrength(int Brightness){
 
 	int dutyCycle = 0;
 	

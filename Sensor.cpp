@@ -12,5 +12,4 @@
 void initCounter(int var){
 	EIMSK = 0b00110000; // INT 4 & INT 5 active - BEN 2.
 	EICRB = 0b00001111; // INT 4 & INT 5 rising edge.
-	var = 0;
 }

@@ -12,7 +12,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-
 /*************************************************************************
 UART 0 initialization:
     Asynchronous mode.
@@ -59,33 +58,6 @@ void InitUART(unsigned long BAUD, unsigned char DataBit, bool Rx_Int)
 	UBRR1L = ((F_CPU/(16*BAUD))-1);
 }
 
-/*************************************************************************
-  Returns 0 (FALSE), if the UART has NOT received a new character.
-  Returns value <> 0 (TRUE), if the UART HAS received a new character.
-*************************************************************************/
-bool CharReady()
-{
-   return (UCSR1A & (1<<TXC1)) ? true : false;
-}
-
-/*************************************************************************
-Awaits new character received.
-Then this character is returned.
-*************************************************************************/
-char ReadChar()
-{
-   while(!(UCSR1A & (1<<RXC1))){
-	   
-   }
-   return UDR1;
-}
-
-/*************************************************************************
-Awaits transmitter register ready.
-Then send the character.
-Parameter :
-	Tegn : Character for sending. 
-*************************************************************************/
 void SendChar(char Tegn)
 {
    while(!(UCSR1A & (1<<UDRE1))){
@@ -93,36 +65,6 @@ void SendChar(char Tegn)
    }
    UDR1 = Tegn;
 }
-
-/*************************************************************************
-Sends 0 terminated string.
-Parameter:
-   Streng: Pointer to the string. 
-*************************************************************************/
-void SendString(char* Streng)
-{
-	while(*Streng != '\0'){
-		SendChar(*Streng);
-		Streng++;
-	}
-}
-
-/*************************************************************************
-Converts the integer "Tal" to an ASCII string - and then sends this string
-using the USART.
-Makes use of the C standard library <stdlib.h>.
-Parameter:
-    Tal: The integer to be converted and sent. 
-*************************************************************************/
-void SendInteger(int Tal)
-{
-   char intStr[30];
-   itoa(Tal, intStr, 10);
-   SendString(intStr);
-}
-
-
-/************************************************************************/
 
 void playNext()
 {
@@ -148,35 +90,6 @@ void volumeUp()
 	SendChar(0x00);
 	SendChar(0xFF);
 	SendChar(0xFC);
-	SendChar(0xEF);
-
-};
-
-
-void volumeDown()
-{
-
-	SendChar(0x7E);
-	SendChar(0x05);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0xFF);
-	SendChar(0xFB);
-	SendChar(0xEF);
-
-};
-
-void stopSound()
-{
-
-	SendChar(0x7E);
-	SendChar(0x16);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0xFF);
-	SendChar(0xEA);
 	SendChar(0xEF);
 
 };

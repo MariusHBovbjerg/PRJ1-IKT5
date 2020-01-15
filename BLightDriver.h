@@ -6,6 +6,6 @@
  */ 
 
 #pragma once
-void BlightInit(void);
-void BlightToggle(void);
-void blightStrength(int);
+void bLightInit(void);
+void blLghtToggle(void);
+void bLightStrength(int);

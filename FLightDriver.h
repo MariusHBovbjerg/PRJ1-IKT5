@@ -6,6 +6,6 @@
  */ 
 
 #pragma once
-void FlightInit(void);
-void FlightOn(void);
-void FlightOff(void);
+void fLightInit(void);
+void fLightOn(void);
+void fLightOff(void);
