@@ -147,12 +147,14 @@ int main(void)
 		switch(counter){
 			case 1:   // Start manuelt med brik
 			if(newCount){
+				playStartSound();
 				TIMSK3 = 0b00000010;
 				TCNT3 = 0;
 				bLightStrength(15);
 				newCount = false;
-				playStartSound();
-				_delay_ms(1500); //Delay for at spille intro 10 sek
+				_delay_ms(3000); //Delay for at spille intro 10 sek
+				stopSOMO();
+				_delay_ms(50);
 				fLightOn();
 				_delay_ms(20);
 				MotorMode = 1;
@@ -184,8 +186,7 @@ int main(void)
 			if(newCount){
 				TCNT3 = 0;
 				bLightStrength(15);
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				TCNT1 = 0;
@@ -201,16 +202,7 @@ int main(void)
 			if(newCount){
 				TCNT3 = 0;
 				bLightStrength(15);
-				/*//stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
-				_delay_ms(10);
-				newCount = false;
-				TCNT1 = 0;
-				setSpeed(80.0);
-				_delay_ms(150);*/
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				TCNT1 = 0;
@@ -224,9 +216,7 @@ int main(void)
 			if(newCount){
 				TCNT3 = 0;
 				bLightStrength(15);
-				//stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				TCNT1 = 0;
@@ -241,9 +231,7 @@ int main(void)
 			if(newCount){
 				TCNT3 = 0;
 				bLightStrength(15);
-				stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				TCNT1 = 0;
@@ -256,9 +244,7 @@ int main(void)
 			
 			case 7: // stop ved 6. brik
 			if(newCount){
-				stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				MotorMode = 2;
@@ -278,9 +264,7 @@ int main(void)
 			if(newCount){
 				TCNT3 = 0;
 				bLightStrength(15);
-				stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				TCNT1 = 0;
@@ -292,23 +276,13 @@ int main(void)
 			break;
 			
 			case 9:
-			//if(newCount){
-				//stopSOMO();
-				//playCoinSound(); //Mario coin
-				//_delay_ms(10);
-				//newCount = false;
-				//
-				//TCNT1 = 0;
-				//setSpeed(99);
-			//}
+			
 			counter++;
 			break;
 			
 			case 10: //Stop ved 5. brik igen
 			if(newCount){
-				//stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				TCNT3 = 0;
@@ -329,9 +303,7 @@ int main(void)
 			if(newCount){
 				TCNT3 = 0;
 				bLightStrength(15);
-				stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				MotorMode = 1;
@@ -345,9 +317,7 @@ int main(void)
 			
 			case 12: // 6. brik igen 
 			if(newCount){
-				stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				setSpeed(0);
@@ -369,9 +339,7 @@ int main(void)
 			
 			case 13: // Stop efter 7. brik
 			if(newCount){
-				stopSOMO();
-				
-				//playCoinSound(); //Mario coin
+				playCoinSound(); //Mario coin
 				_delay_ms(10);
 				newCount = false;
 				_delay_ms(1000);
@@ -383,7 +351,7 @@ int main(void)
 				stopSOMO();
 				TIMSK3 = 0b00000000;
 				PORTC = 0b00000000;
-				//playEndSound(); //Mario end
+				playEndSound(); //Mario end
 				playNext();
 			}
 			
