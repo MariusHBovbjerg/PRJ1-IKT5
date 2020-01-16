@@ -153,7 +153,6 @@ int main(void)
 				bLightStrength(15);
 				newCount = false;
 				_delay_ms(3000); //Delay for at spille intro 10 sek
-				stopSOMO();
 				_delay_ms(50);
 				fLightOn();
 				_delay_ms(20);
@@ -348,11 +347,9 @@ int main(void)
 				MotorMode = 0;
 				_delay_ms(500);
 				fLightOff();
-				stopSOMO();
 				TIMSK3 = 0b00000000;
 				PORTC = 0b00000000;
 				playEndSound(); //Mario end
-				playNext();
 			}
 			
 			break;

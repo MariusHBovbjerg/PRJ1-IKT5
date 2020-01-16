@@ -12,18 +12,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-/*************************************************************************
-UART 0 initialization:
-    Asynchronous mode.
-    Baud rate = 9600.
-    Data bits = 8.
-    RX and TX enabled.
-    No interrupts enabled.
-    Number of Stop Bits = 1.
-    No Parity.
-    Baud rate = 9600.
-    Data bits = 8.
-*************************************************************************/
 void InitUART(unsigned long BAUD, unsigned char DataBit, bool Rx_Int)
 {
    if(Rx_Int){
@@ -67,34 +55,6 @@ void SendChar(char Tegn)
    UDR2 = Tegn;
 }
 
-void playNext()
-{
-
-	SendChar(0x7E);
-	SendChar(0x01);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0xFF);
-	SendChar(0xFF);
-	SendChar(0xEF);
-
-};
-
-void stopSOMO()
-{
-
-	SendChar(0x7E);
-	SendChar(0x0C);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0xFF);
-	SendChar(0xF4);
-	SendChar(0xEF);
-
-};
-
 void playCoinSound()
 {
 	SendChar(0x7E);
@@ -108,8 +68,6 @@ void playCoinSound()
 
 };
 
-
-
 void playStartSound()
 {
 	SendChar(0x7E);
@@ -122,7 +80,6 @@ void playStartSound()
 	SendChar(0xEF);
 
 };
-
 
 void playEndSound()
 {
