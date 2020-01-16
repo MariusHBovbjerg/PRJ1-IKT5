@@ -80,6 +80,62 @@ void playNext()
 
 };
 
+void stopSOMO()
+{
+
+	SendChar(0x7E);
+	SendChar(0x16);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0xFF);
+	SendChar(0xEA);
+	SendChar(0xEF);
+
+};
+
+void playCoinSound()
+{
+	SendChar(0x7E);
+	SendChar(0x03);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0x01);
+	SendChar(0xFF);
+	SendChar(0xFC);
+	SendChar(0xEF);
+
+};
+
+
+
+void playStartSound()
+{
+	SendChar(0x7E);
+	SendChar(0x03);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0x01);
+	SendChar(0xFF);
+	SendChar(0xFC);
+	SendChar(0xEF);
+
+};
+
+
+void playEndSound()
+{
+	SendChar(0x7E);
+	SendChar(0x03);
+	SendChar(0x00);
+	SendChar(0x00);
+	SendChar(0x03);
+	SendChar(0xFF);
+	SendChar(0xFA);
+	SendChar(0xEF);
+
+};
+
 void volumeUp()
 {
 
@@ -93,3 +149,4 @@ void volumeUp()
 	SendChar(0xEF);
 
 };
+

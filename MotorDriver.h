@@ -9,4 +9,4 @@
 
 void initMotor(); // Function for init PWM timer for motor.
 
-void setSpeed(int); // Function to set the speed of the car.
+void setSpeed(float); // Function to set the speed of the car.
