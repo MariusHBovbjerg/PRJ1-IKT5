@@ -152,7 +152,7 @@ int main(void)
 				_delay_ms(10);
 				TCNT3 = 0;
 				bLightStrength(15);
-				_delay_ms(3000); //Delay for at spille intro 10 sek
+				_delay_ms(10500); //Delay for at spille intro 10 sek
 				TIMSK3 = 0b00000010;
 				TCNT3 = 0;
 				bLightStrength(15);
