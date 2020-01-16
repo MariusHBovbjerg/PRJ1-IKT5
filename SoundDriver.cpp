@@ -60,10 +60,10 @@ void playCoinSound()
 	SendChar(0x7E);
 	SendChar(0x0F);
 	SendChar(0x00);
-	SendChar(0x03);
 	SendChar(0x01);
+	SendChar(0x02);
 	SendChar(0xFF);
-	SendChar(0xEF);
+	SendChar(0xEE);
 	SendChar(0xEF);
 
 };
@@ -86,10 +86,10 @@ void playEndSound()
 	SendChar(0x7E);
 	SendChar(0x0F);
 	SendChar(0x00);
-	SendChar(0x02);
 	SendChar(0x01);
+	SendChar(0x03);
 	SendChar(0xFF);
-	SendChar(0xEF);
+	SendChar(0xED);
 	SendChar(0xEF);
 
 };
