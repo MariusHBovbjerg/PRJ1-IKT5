@@ -27,43 +27,44 @@ UART 0 initialization:
 void InitUART(unsigned long BAUD, unsigned char DataBit, bool Rx_Int)
 {
    if(Rx_Int){
-	  UCSR1B = 0b10011000; 
+	  UCSR2B = 0b10011000; 
 	  sei();
    }else{
-	   UCSR1B = 0b00011000;
+	   UCSR2B = 0b00011000;
    }
    if((BAUD >= 300) && (BAUD <= 115200) && (DataBit >= 5) && (DataBit <= 8)){
 	   switch(DataBit){
 		   case 5:
-			   UCSR1C = 0b00000000;
+			   UCSR2C = 0b00000000;
 			   break;
 		   
 		   case 6:
-			   UCSR1C = 0b00000010;
+			   UCSR2C = 0b00000010;
 			   break;
 		   
 		   case 7:
-			   UCSR1C = 0b00000100;
+			   UCSR2C = 0b00000100;
 			   break;
 		   
 		   case 8:
-			   UCSR1C = 0b00000110;
+			   UCSR2C = 0b00000110;
 			   break;
 		   
 		   default:
-			   UCSR1C = 0b00000110;
+			   UCSR2C = 0b00000110;
 			   break;
 	   }
 	}
-	UBRR1L = ((F_CPU/(16*BAUD))-1);
+	UBRR2L = ((F_CPU/(16*BAUD))-1);
+	volumeMax();
 }
 
 void SendChar(char Tegn)
 {
-   while(!(UCSR1A & (1<<UDRE1))){
+   while(!(UCSR2A & (1<<UDRE2))){
 	   
    }
-   UDR1 = Tegn;
+   UDR2 = Tegn;
 }
 
 void playNext()
@@ -84,12 +85,12 @@ void stopSOMO()
 {
 
 	SendChar(0x7E);
-	SendChar(0x16);
+	SendChar(0x0C);
 	SendChar(0x00);
 	SendChar(0x00);
 	SendChar(0x00);
 	SendChar(0xFF);
-	SendChar(0xEA);
+	SendChar(0xF4);
 	SendChar(0xEF);
 
 };
@@ -97,12 +98,12 @@ void stopSOMO()
 void playCoinSound()
 {
 	SendChar(0x7E);
+	SendChar(0x0F);
+	SendChar(0x00);
 	SendChar(0x03);
-	SendChar(0x00);
-	SendChar(0x00);
 	SendChar(0x01);
 	SendChar(0xFF);
-	SendChar(0xFC);
+	SendChar(0xEF);
 	SendChar(0xEF);
 
 };
@@ -112,12 +113,12 @@ void playCoinSound()
 void playStartSound()
 {
 	SendChar(0x7E);
-	SendChar(0x03);
-	SendChar(0x00);
+	SendChar(0x0F);
 	SendChar(0x00);
 	SendChar(0x01);
+	SendChar(0x01);
 	SendChar(0xFF);
-	SendChar(0xFC);
+	SendChar(0xEF);
 	SendChar(0xEF);
 
 };
@@ -126,26 +127,26 @@ void playStartSound()
 void playEndSound()
 {
 	SendChar(0x7E);
-	SendChar(0x03);
+	SendChar(0x0F);
 	SendChar(0x00);
-	SendChar(0x00);
-	SendChar(0x03);
+	SendChar(0x02);
+	SendChar(0x01);
 	SendChar(0xFF);
-	SendChar(0xFA);
+	SendChar(0xEF);
 	SendChar(0xEF);
 
 };
 
-void volumeUp()
+void volumeMax()
 {
 
 	SendChar(0x7E);
-	SendChar(0x04);
+	SendChar(0x06);
 	SendChar(0x00);
 	SendChar(0x00);
-	SendChar(0x00);
+	SendChar(0x1E);
 	SendChar(0xFF);
-	SendChar(0xFC);
+	SendChar(0xDC);
 	SendChar(0xEF);
 
 };

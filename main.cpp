@@ -135,16 +135,13 @@ int main(void)
 	InitUART(9600, 8, 0);
 	InitUARTnul(9600);
 	bLightInit();
-	TCNT3 = 0;
-	bLightStrength(15);
-	volumeUp();
-	volumeUp();
-	volumeUp();
-	volumeUp();
 	counter = 0;
 	PORTA = 0b00000000;
 	TIMSK3 = 0b00000000;
+
+	
 	while(1){
+		
 		
 		SendInteger(counter);		
 		switch(counter){
@@ -154,26 +151,25 @@ int main(void)
 				TCNT3 = 0;
 				bLightStrength(15);
 				newCount = false;
-				playNext();
-				//playStartSound(); //Mario Intro
-				fLightOn();
-				MotorMode = 1;
+				playStartSound();
 				_delay_ms(1500); //Delay for at spille intro 10 sek
+				fLightOn();
+				_delay_ms(20);
+				MotorMode = 1;
+				_delay_ms(100);
 				TCNT1 = 0;
 				setSpeed(99.0);
 				counter = 1;
 			}
 			
-			MotorMode = 1;
+			
 			break;
 			
 			case 2:  // 1. brik
 			if(newCount){
 				TCNT3 = 0;
 				bLightStrength(15);
-				//stopSOMO();
-				playNext();
-				//playCoinSound(); //Mario coin
+				playCoinSound();
 				_delay_ms(10);
 				newCount = false;
 				TCNT1 = 0;
@@ -318,7 +314,7 @@ int main(void)
 				TCNT3 = 0;
 				bLightStrength(254);
 				MotorMode = 1;
-				_delay_ms(10);
+				_delay_ms(100);
 				TCNT1 = 0;
 				setSpeed(99.0);
 				counter = 10;
@@ -339,6 +335,7 @@ int main(void)
 				_delay_ms(10);
 				newCount = false;
 				MotorMode = 1;
+				_delay_ms(100);
 				TCNT1 = 0;
 				setSpeed(99.0);
 				_delay_ms(500);
@@ -360,8 +357,9 @@ int main(void)
 				_delay_ms(500);
 				TCNT3 = 0;
 				bLightStrength(15);
-				_delay_ms(1500);
+				_delay_ms(400);
 				MotorMode = 1;
+				_delay_ms(100);
 				TCNT1 = 0;
 				setSpeed(99.0);
 				counter = 12;

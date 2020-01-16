@@ -10,7 +10,7 @@
 void InitUART(unsigned long, unsigned char, bool);
 void SendChar(char);
 void playNext(void);
-void volumeUp(void);
+void volumeMax(void);
 void playCoinSound(void);
 void playStartSound(void);
 void playEndSound(void);
