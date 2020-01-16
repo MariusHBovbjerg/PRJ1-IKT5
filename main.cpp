@@ -137,8 +137,8 @@ int main(void)
 	bLightInit();
 	counter = 0;
 	PORTA = 0b00000000;
+		
 	TIMSK3 = 0b00000000;
-
 	
 	while(1){
 		
